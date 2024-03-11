@@ -11,10 +11,9 @@ class App extends Component {
     bad: 0,
   };
 
-  handleFeedback = e => {
-    const { title } = e.target;
+  handleFeedback = item => {
     this.setState(prevState => ({
-      [title]: prevState[title] + 1,
+      [item]: prevState[item] + 1,
     }));
   };
 
@@ -31,6 +30,7 @@ class App extends Component {
   };
 
   render() {
+    const total = this.countTotalFeedback();
     return (
       <main className="appContainer">
         <Section text="Please leave feedback">
@@ -40,12 +40,12 @@ class App extends Component {
           ></FeedbackOptions>
         </Section>
         <Section text="Statistics">
-          {Object.values(this.state).some(value => value > 0) ? (
+          {total > 0 ? (
             <Statistics
               good={this.state.good}
               neutral={this.state.neutral}
               bad={this.state.bad}
-              total={this.countTotalFeedback()}
+              total={total}
               positivePercentage={this.countPositiveFeedbackPercentage()}
             ></Statistics>
           ) : (

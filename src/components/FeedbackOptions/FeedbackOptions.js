@@ -31,7 +31,7 @@ class FeedbackOptions extends Component {
                 type="button"
                 title={item}
                 style={{ backgroundColor: this.getBtnColor(item) }}
-                onClick={this.props.onLeaveFeedback}
+                onClick={()=>this.props.onLeaveFeedback(item)}
               >
                 {item.toUpperCase()}
               </button>
